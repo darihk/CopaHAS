@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
+// batatinha cremosa gostosa 
+
 namespace CopaHAS.Controllers
 {
     [ApiController]
