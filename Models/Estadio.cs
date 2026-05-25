@@ -12,7 +12,7 @@ namespace CopaHAS.Models
 
         public string Cidade{get;set;} = string.Empty;
 
-        public int Capacidade{get;set;}
+        public decimal Capacidade{get;set;}
 
         //1:N
         public List<Jogo> Jogos { get; set; }
