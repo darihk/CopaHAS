@@ -15,7 +15,7 @@ namespace CopaHAS.Data
         {
 
         }
-        public DbSet<Jogador> TB_JOGADORES { get; set; }      
+        public DbSet<Jogador> TB_JOGADORES { get; set; }
         public DbSet<Estadio> TB_ESTADIO {get;set;}
         public DbSet<Selecao> TB_SELECOES {get;set;}
         public DbSet<Tecnico> TB_TECNICOS {get;set;}
@@ -109,7 +109,7 @@ namespace CopaHAS.Data
                     .WithMany(p => p.JogoSelecoes)
                     .HasForeignKey(d => d.SelecaoId);
             });
-
+            
             modelBuilder.Entity<Jogador>().HasData
             (
                 new Jogador(){ Id=1, Nome="Hugo Souza",NumeroCamisa=1,Posicao="Goleiro",Status=Models.Enuns.StatusJogador.Titular },
@@ -125,7 +125,7 @@ namespace CopaHAS.Data
                 new Jogador(){ Id=11, Nome="Rodrygo", NumeroCamisa=19, Posicao="Atacante", Status=Models.Enuns.StatusJogador.DepartamentoMedico },
                 new Jogador(){ Id=12, Nome="Alisson", NumeroCamisa=23, Posicao="Goleiro", Status=Models.Enuns.StatusJogador.NaoRelacionado }
             );
-
+            
             modelBuilder.Entity<Estadio>().HasData
             (
                 // 🇺🇸 Estados Unidos (11)
@@ -148,7 +148,7 @@ namespace CopaHAS.Data
                 new Estadio() { Id = 15, Nome = "Estadio BBVA", Cidade = "Monterrey", Capacidade = 53500m },
                 new Estadio() { Id = 16, Nome = "Estadio Akron", Cidade = "Guadalajara", Capacidade = 49850m }
             );
-
+            
             //Área para futuros inserts no banco de dados a partir de outras classes/objetos
         }
 

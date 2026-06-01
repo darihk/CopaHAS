@@ -1,37 +1,34 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using CopaHAS.Data;
 using CopaHAS.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace CopaHAS.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SelecoesController : ControllerBase
+    public class TecnicosController : ControllerBase
     {
-        private readonly DataContext _context; //using CopaHas.Data
+        private readonly DataContext _context;
 
-        public SelecoesController(DataContext context)
+        public TecnicosController(DataContext context)
         {
             _context = context;
         }
 
-        [HttpGet("{id}")] //Buscar pelo Id
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetSingle(int id)
         {
             try
             {
-                Selecao selecao = await _context.TB_SELECOES
+                Tecnico tecnico = await _context.TB_TECNICOS
                     .FirstOrDefaultAsync(eBusca => eBusca.Id == id);
 
-                return Ok(selecao);
+                return Ok(tecnico);
             }
             catch (System.Exception ex)
             {
@@ -40,14 +37,14 @@ namespace CopaHAS.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Selecao novaSelecao)
+        public async Task<IActionResult> Post(Tecnico novoTecnico)
         {
             try
             {
-                await _context.TB_SELECOES.AddAsync(novaSelecao);
+                await _context.TB_TECNICOS.AddAsync(novoTecnico);
                 await _context.SaveChangesAsync();
 
-                List<Selecao> lista = await _context.TB_SELECOES.ToListAsync();
+                List<Tecnico> lista = await _context.TB_TECNICOS.ToListAsync();
                 return Ok(lista);
             }
             catch (System.Exception ex)
@@ -62,7 +59,7 @@ namespace CopaHAS.Controllers
         {
            try
            {
-                List<Selecao> lista = await _context.TB_SELECOES.ToListAsync();
+                List<Tecnico> lista = await _context.TB_TECNICOS.ToListAsync();
                 lista.RemoveAll(e => e.Id==id);
                 return Ok(lista);
 
@@ -79,7 +76,8 @@ namespace CopaHAS.Controllers
         {
             try
             {
-                List<Selecao> lista = await _context.TB_SELECOES.ToListAsync();
+                List<Tecnico> lista = await _context.TB_TECNICOS.Include(s => s.SelecaoIdNavegacao)
+                    .ToListAsync();
                 return Ok(lista);
             }
             catch (System.Exception ex)

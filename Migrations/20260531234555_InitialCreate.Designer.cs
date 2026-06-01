@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CopaHAS.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20260525114242_MigracaoEstadios")]
-    partial class MigracaoEstadios
+    [Migration("20260531234555_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

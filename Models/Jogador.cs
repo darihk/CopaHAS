@@ -17,6 +17,6 @@ namespace CopaHAS.Models
         public int SelecaoId { get; set; } // FK
         public StatusJogador Status { get; set; }
 
-        public Selecao SelecaoIdNavegacao { get; set; } //Navegação (N:1)
+        public Selecao SelecaoIdNavegacao { get; set; } //Navegação (N:1) 
     }
 }
